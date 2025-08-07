@@ -19,38 +19,27 @@ void sieve(){
             primes.push_back(i);
     }
 }
-
-void pt(int n, int k){
-    int j = 1;
-    int i = 2;
-    int s,m = 0;
-    while(n>1){
-        while(n%i==0){
-            s=i;
-            m+=1;
-            n/=i;
-            if(j==k){
-                cout << s << '\n';return;
-            }
-            j+=1;
-        }
-        i++;m=0;
-    } cout << -1 << '\n';
-}
-
 // 2 3 5 7
 void solve(){
+    sieve();
     int T;cin >> T;
     while(T--){
-        int n,k;
-        cin >> n >> k;
-        pt(n,k);
+        int A,B;
+        cin >> A >> B;
+        int z = A+B;
+        auto it = lower_bound(primes.begin(),primes.end(),z);
+        int index = it - primes.begin();
+        if(is_prime[z]){
+            cout << primes[index+1] - z << '\n';
+        } else {
+            cout << primes[index] - z << '\n';
+        }
     }
 }
 
 int main() {
-    freopen("factork.inp","r",stdin);
-    freopen("factork.out","w",stdout);
+    freopen("FINDNUM.INP","r",stdin);
+    freopen("FINDNUM.OUT","w",stdout);
     ios_base::sync_with_stdio(false);
     cin.tie(0);cout.tie(0);
     solve();
